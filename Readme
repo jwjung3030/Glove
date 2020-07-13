@@ -1,0 +1,34 @@
+Glove_python을 python3.8에 설치하기
+
+	• Glove_python 다운받기
+	  https://github.com/maciejkula/glove-python
+
+다운로드 파일을 압축 풀고 아래와 같이 실행
+
+	• cython glove_cython.pyx
+	• cythonize glove_cython.pyx
+	• cython metrics/accuracy_cython.pyx
+	• cythonize metrics/accuracy_cython.pyx
+
+출처: <https://github.com/maciejkula/glove-python/issues/96> 
+
+	• cython --cplus corpus_cython.pyx instead.
+	• After that, cd .. then python setup.py cythonize
+
+출처: <https://github.com/maciejkula/glove-python/issues/96> 
+
+
+아래와 같이 setup.py 에서 stdc++ 제거하고(변경) 후 저장
+
+    Extension("glove.corpus_cython", [glove_corpus],
+              language='C++',
+              libraries=[],
+              extra_link_args=compile_args,
+              extra_compile_args=compile_args)]
+
+
+폴더에서 glove-python-master 아래와 같이 실행하여 설치
+
+Pip setup.py install 
+
+출처: <https://github.com/maciejkula/glove-python/issues/42> 
